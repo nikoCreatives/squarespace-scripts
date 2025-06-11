@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Load JS after injecting HTML
     const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.js';
+    script.src = 'https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts@main/zip-widget.js';
     script.defer = true;
     document.body.appendChild(script);
   } catch (err) {
