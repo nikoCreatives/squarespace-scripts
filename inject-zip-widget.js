@@ -1,6 +1,9 @@
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('zip-widget-container');
-  if (!container) return;
+  if (!container) {
+    console.warn("No container with ID 'zip-widget-container' found.");
+    return;
+  }
 
   try {
     const htmlRes = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.html');
@@ -9,8 +12,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.js';
+    script.defer = true;
     document.body.appendChild(script);
   } catch (err) {
-    console.error('ZIP Widget failed to load:', err);
+    console.error('Failed to load ZIP widget:', err);
   }
 });
