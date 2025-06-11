@@ -1,23 +1,21 @@
-// Wait until DOM is fully loaded
-document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.getElementById('zip-widget-container');
-  if (!container) {
-    console.error('zip-widget-container not found');
-    return;
-  }
-
+(async () => {
   try {
-    // Load HTML
-    const htmlResponse = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts@main/zip-widget.html');
-    const htmlContent = await htmlResponse.text();
-    container.innerHTML = htmlContent;
+    const response = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts@latest/zip-widget.html');
+    const html = await response.text();
 
-    // Load JS after injecting HTML
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts@main/zip-widget.js';
-    script.defer = true;
-    document.body.appendChild(script);
+    const container = document.getElementById('zip-widget-container');
+    if (!container) {
+      console.error('No element with ID "zip-widget-container" found on the page.');
+      return;
+    }
+
+    container.innerHTML = html;
+
+    // Dynamically load the zip-widget.js logic **after** HTML is inserted
+    const logicScript = document.createElement('script');
+    logicScript.src = 'https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts@latest/zip-widget.js?v=2.0'; // Add versioning to bust cache
+    document.body.appendChild(logicScript);
   } catch (err) {
-    console.error('Failed to load ZIP widget:', err);
+    console.error('ZIP widget injection failed:', err);
   }
-});
+})();
