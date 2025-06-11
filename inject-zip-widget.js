@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // Load HTML
-    const htmlResponse = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.html');
+    const htmlResponse = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts@main/zip-widget.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
