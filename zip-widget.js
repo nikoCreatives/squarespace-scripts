@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const zipForm = document.getElementById('zip-code-form');
+  const zipInput = document.getElementById('zip-code');
+  const zipResult = document.getElementById('zip-result');
+  const zipSuccess = document.getElementById('zip-success');
+  const zipError = document.getElementById('zip-error');
+
+  if (!zipForm || !zipInput || !zipResult || !zipSuccess || !zipError) {
+    console.error('Zip widget elements not found');
+    return;
+  }
+  
   const servedZipCodes = [
 '53001', '53002', '53003', '53004', '53005', '53006', '53007', '53010', '53011', '53012','53013', '53014',
  '53015', '53016', '53017', '53018', '53019', '53020', '53021', '53022', '53023', '53024',
@@ -103,19 +114,10 @@ document.addEventListener('DOMContentLoaded', function () {
 '60049', '60092', '60037', '60075', '60079', '60086'
   ];
 
-  const zipForm = document.getElementById('zip-code-form');
-  const zipResult = document.getElementById('zip-result');
-  const zipSuccess = document.getElementById('zip-success');
-  const zipError = document.getElementById('zip-error');
-
-  if (!zipForm || !zipResult || !zipSuccess || !zipError) {
-    console.warn("ZIP widget elements missing.");
-    return;
-  }
-  
-  zipForm.addEventListener('submit', function (e) {
+zipForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    const zipCode = document.getElementById('zip-code').value.trim();
+
+    const zipCode = zipInput.value.trim();
     zipResult.style.display = 'block';
 
     if (servedZipCodes.includes(zipCode)) {
