@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
   const servedZipCodes = [
-      /*Wisconsin */
 '53001', '53002', '53003', '53004', '53005', '53006', '53007', '53010', '53011', '53012','53013', '53014',
  '53015', '53016', '53017', '53018', '53019', '53020', '53021', '53022', '53023', '53024',
 '53027', '53029', '53031', '53032', '53033', '53034', '53035', '53036', '53037', '53038', '53039', '53040',
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
 '54965', '54966', '54967', '54968', '54970', '54971', '54974', '54977', '54978', '54979', '54980', '54981',
 '54982', '54983', '54984', '54985', '54986',
 
-/* Illinois */
 '60629', '60618', '60639', '60647', '60804', '60632', '60617', '60608', '60625', '60623', '60634', '60657',
  '60614', '60620', '60641', '60640', '60628', '60609', '60402', '60651', '60619', '60638',
 '60453', '60016', '60056', '60630', '60622', '60411', '60004', '60120', '60626', '60613', '60649', '60010',
@@ -110,8 +108,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const zipSuccess = document.getElementById('zip-success');
   const zipError = document.getElementById('zip-error');
 
-  if (!zipForm) return;
-
+  if (!zipForm || !zipResult || !zipSuccess || !zipError) {
+    console.warn("ZIP widget elements missing.");
+    return;
+  }
+  
   zipForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const zipCode = document.getElementById('zip-code').value.trim();
