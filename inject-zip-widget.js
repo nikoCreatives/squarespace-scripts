@@ -1,15 +1,18 @@
+// Wait until DOM is fully loaded
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('zip-widget-container');
   if (!container) {
-    console.warn("No container with ID 'zip-widget-container' found.");
+    console.error('zip-widget-container not found');
     return;
   }
 
   try {
-    const htmlRes = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.html');
-    const htmlText = await htmlRes.text();
-    container.innerHTML = htmlText;
+    // Load HTML
+    const htmlResponse = await fetch('https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.html');
+    const htmlContent = await htmlResponse.text();
+    container.innerHTML = htmlContent;
 
+    // Load JS after injecting HTML
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/gh/nikoCreatives/squarespace-scripts/zip-widget.js';
     script.defer = true;
